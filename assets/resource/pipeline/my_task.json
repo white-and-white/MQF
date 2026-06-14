@@ -1,12 +1,215 @@
 {
-    "MyTask1": {},
-    "MyTask2": {},
-    "MyTask3": {},
-    "MyTask4": {
-        "recognition": "Custom",
-        "custom_recognition": "my_reco_222",
-        "action": "Custom",
-        "custom_action": "my_action_111"
+    "$__mpe_config_新建Pipeline2": {
+        "$__mpe_code": {
+            "prefix": "",
+            "coordinateMode": "absolute-v1",
+            "lastSyncTime": 1781455232953,
+            "isModifiedExternally": false,
+            "filePath": "C:\\Users\\Claude\\Desktop\\MAAProject\\MQF\\assets\\resource\\pipeline\\my_task.json",
+            "savedViewport": {
+                "x": 967,
+                "y": -824,
+                "zoom": 1.5
+            },
+            "filename": "新建Pipeline2",
+            "version": "v1.6.1"
+        }
     },
-    "OcrTask": {}
+    "MyTask2": {
+        "$__mpe_code": {
+            "position": {
+                "x": 12,
+                "y": 12
+            }
+        }
+    },
+    "MyTask3": {
+        "$__mpe_code": {
+            "position": {
+                "x": 252,
+                "y": 12
+            }
+        }
+    },
+    "MyTask4": {
+        "recognition": {
+            "type": "Custom",
+            "param": {
+                "custom_recognition": "my_reco_222"
+            }
+        },
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "my_action_111"
+            }
+        },
+        "$__mpe_code": {
+            "position": {
+                "x": 972,
+                "y": 12
+            }
+        }
+    },
+    "OcrTask": {
+        "$__mpe_code": {
+            "position": {
+                "x": 492,
+                "y": 12
+            }
+        }
+    },
+    "收菜_点击一键务农": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    360,
+                    945
+                ]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
+            "收菜_结束"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 332,
+                "y": 199
+            }
+        }
+    },
+    "收菜_结束": {
+        "action": {
+            "type": "StopTask"
+        },
+        "$__mpe_code": {
+            "position": {
+                "x": 652,
+                "y": 261
+            }
+        }
+    },
+    "点击": {
+        "$__mpe_code": {
+            "position": {
+                "x": 732,
+                "y": 12
+            }
+        }
+    },
+    "监控_扫描一键按钮": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [
+                    247,
+                    978,
+                    235,
+                    86
+                ],
+                "expected": [
+                    "键(务农|收菜)"
+                ],
+                "threshold": 0.5
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    360,
+                    945
+                ]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
+            "监控_点击后等待下一轮"
+        ],
+        "on_error": [
+            "监控_未命中等待下一轮"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 424,
+                "y": 866
+            }
+        }
+    },
+    "监控_未命中等待下一轮": {
+        "post_delay": 60000,
+        "next": [
+            "[JumpBack]监控_扫描一键按钮"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 12,
+                "y": 1019
+            }
+        }
+    },
+    "监控_点击后等待下一轮": {
+        "post_delay": 60000,
+        "next": [
+            "[JumpBack]监控_扫描一键按钮"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 12,
+                "y": 451
+            }
+        }
+    },
+    "监控模式": {
+        "timeout": 1000,
+        "next": [
+            "监控_扫描重新登陆按钮",
+            "监控_扫描一键按钮"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": -89,
+                "y": 736
+            }
+        }
+    },
+    "自动收菜": {
+        "timeout": 1000,
+        "next": [
+            "收菜_点击一键务农"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 12,
+                "y": 216
+            }
+        }
+    },
+    "监控_扫描重新登陆按钮": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": [
+                    "新登录"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "监控_扫描一键按钮"
+        ],
+        "on_error": [
+            "监控_未命中等待下一轮"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 422,
+                "y": 598
+            }
+        }
+    }
 }
