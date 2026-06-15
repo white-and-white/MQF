@@ -3,32 +3,16 @@
         "$__mpe_code": {
             "prefix": "",
             "coordinateMode": "absolute-v1",
-            "lastSyncTime": 1781455232953,
+            "lastSyncTime": 1781459364118,
             "isModifiedExternally": false,
             "filePath": "C:\\Users\\Claude\\Desktop\\MAAProject\\MQF\\assets\\resource\\pipeline\\my_task.json",
             "savedViewport": {
-                "x": 967,
-                "y": -824,
-                "zoom": 1.5
+                "x": 329,
+                "y": -56,
+                "zoom": 0.66
             },
             "filename": "新建Pipeline2",
             "version": "v1.6.1"
-        }
-    },
-    "MyTask2": {
-        "$__mpe_code": {
-            "position": {
-                "x": 12,
-                "y": 12
-            }
-        }
-    },
-    "MyTask3": {
-        "$__mpe_code": {
-            "position": {
-                "x": 252,
-                "y": 12
-            }
         }
     },
     "MyTask4": {
@@ -46,16 +30,8 @@
         },
         "$__mpe_code": {
             "position": {
-                "x": 972,
-                "y": 12
-            }
-        }
-    },
-    "OcrTask": {
-        "$__mpe_code": {
-            "position": {
-                "x": 492,
-                "y": 12
+                "x": 499,
+                "y": -15
             }
         }
     },
@@ -91,14 +67,6 @@
             }
         }
     },
-    "点击": {
-        "$__mpe_code": {
-            "position": {
-                "x": 732,
-                "y": 12
-            }
-        }
-    },
     "监控_扫描一键按钮": {
         "recognition": {
             "type": "OCR",
@@ -110,7 +78,7 @@
                     86
                 ],
                 "expected": [
-                    "键(务农|收菜)"
+                    "键(务农|收获)"
                 ],
                 "threshold": 0.5
             }
@@ -138,10 +106,59 @@
             }
         }
     },
+    "监控_扫描重新登陆按钮": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": [
+                    "(重新登录|重新登陆|新登录)"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 5000,
+        "next": [
+            "监控_登录后检查一键"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 413,
+                "y": 527
+            }
+        }
+    },
+    "监控_无需重新登陆": {
+        "timeout": 1000,
+        "next": [
+            "监控_扫描一键按钮",
+            "监控_未命中等待下一轮"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 666,
+                "y": 698
+            }
+        }
+    },
+    "监控_登录后检查一键": {
+        "timeout": 1000,
+        "next": [
+            "监控_扫描一键按钮",
+            "监控_未命中等待下一轮"
+        ],
+        "$__mpe_code": {
+            "position": {
+                "x": 662,
+                "y": 811
+            }
+        }
+    },
     "监控_未命中等待下一轮": {
         "post_delay": 60000,
         "next": [
-            "[JumpBack]监控_扫描一键按钮"
+            "监控模式"
         ],
         "$__mpe_code": {
             "position": {
@@ -153,7 +170,7 @@
     "监控_点击后等待下一轮": {
         "post_delay": 60000,
         "next": [
-            "[JumpBack]监控_扫描一键按钮"
+            "监控模式"
         ],
         "$__mpe_code": {
             "position": {
@@ -166,7 +183,7 @@
         "timeout": 1000,
         "next": [
             "监控_扫描重新登陆按钮",
-            "监控_扫描一键按钮"
+            "监控_无需重新登陆"
         ],
         "$__mpe_code": {
             "position": {
@@ -184,31 +201,6 @@
             "position": {
                 "x": 12,
                 "y": 216
-            }
-        }
-    },
-    "监控_扫描重新登陆按钮": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": [
-                    "新登录"
-                ]
-            }
-        },
-        "action": {
-            "type": "Click"
-        },
-        "next": [
-            "监控_扫描一键按钮"
-        ],
-        "on_error": [
-            "监控_未命中等待下一轮"
-        ],
-        "$__mpe_code": {
-            "position": {
-                "x": 422,
-                "y": 598
             }
         }
     }
